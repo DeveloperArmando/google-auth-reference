@@ -2,6 +2,9 @@
 
 # Environment files with real credentials
 src/environments/environment.development.ts
+.env
+.env.local
+.env.*.local
 
 # Compiled output
 /dist
