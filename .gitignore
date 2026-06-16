@@ -1,5 +1,9 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
+# IDE and AI tool configuration (personal)
+.vscode/
+.claude/
+
 # Environment files with real credentials
 src/environments/environment.development.ts
 .env
