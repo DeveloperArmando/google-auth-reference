@@ -15,7 +15,8 @@ export class AuthService {
       await this.provider.initialize();
       this.currentUser.set(this.provider.getCurrentUser());
       this.authState.set(this.provider.isAuthenticated() ? 'authenticated' : 'unauthenticated');
-    } catch {
+    } catch (error) {
+      console.error('[AuthService] initialize failed:', error);
       this.authState.set('error');
     }
   }

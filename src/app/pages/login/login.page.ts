@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     if (this.auth.isLoggedIn()) {
-      this.router.navigate(['/home']);
+      void this.router.navigate(['/home']);
     }
   }
 

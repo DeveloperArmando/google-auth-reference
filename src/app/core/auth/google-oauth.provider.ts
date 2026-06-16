@@ -35,7 +35,7 @@ export class GoogleOAuthProvider implements AuthProvider {
       email: claims['email'],
       name: claims['name'],
       picture: claims['picture'],
-      idToken: this.oauthService.getIdToken(),
+      idToken: this.oauthService.getIdToken() ?? null,
     };
   }
 

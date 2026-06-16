@@ -44,12 +44,12 @@ export class ProfilePage {
   decodedHeader = computed(() => {
     const token = this.user()?.idToken;
     if (!token) return null;
-    return JSON.parse(atob(token.split('.')[0]));
+    try { return JSON.parse(atob(token.split('.')[0])); } catch { return null; }
   });
 
   decodedPayload = computed(() => {
     const token = this.user()?.idToken;
     if (!token) return null;
-    return JSON.parse(atob(token.split('.')[1]));
+    try { return JSON.parse(atob(token.split('.')[1])); } catch { return null; }
   });
 }
