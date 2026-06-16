@@ -15,7 +15,7 @@ import { AuthService } from '../../core/auth/auth.service';
         <li><strong>sub</strong> (Google ID único): {{ user()?.sub }}</li>
         <li><strong>email:</strong> {{ user()?.email }}</li>
         <li><strong>name:</strong> {{ user()?.name }}</li>
-        <li><strong>picture:</strong> <img [src]="user()?.picture" width="32" style="border-radius: 50%; vertical-align: middle"></li>
+        <li><strong>picture:</strong> <img [src]="user()?.picture" [alt]="user()?.name + ' avatar'" width="32" style="border-radius: 50%; vertical-align: middle"></li>
       </ul>
     </section>
 

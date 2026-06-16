@@ -1,0 +1,41 @@
+name: CI
+
+# Dispara el workflow en cada PR que apunte a main (o feat/*)
+on:
+  pull_request:
+    branches:
+      - main
+      - 'feat/**'
+
+jobs:
+  # El ID "build-and-test" será el nombre del status check en GitHub
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Descarga el código del repo en la máquina virtual
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      # 2. Configura Node.js (versión fijada para reproducibilidad)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'          # cachea node_modules entre ejecuciones
+
+      # 3. Instala dependencias (ci es más estricto que install: usa package-lock.json)
+      - name: Instalar dependencias
+        run: npm ci
+
+      # 4. Build de producción — falla el job si TypeScript o Angular tienen errores
+      - name: Build
+        run: npm run build
+
+      # 5. Lint — reglas Angular + TypeScript
+      - name: Lint
+        run: npx ng lint
+
+      # 6. Tests con Vitest
+      - name: Tests
+        run: npx vitest run

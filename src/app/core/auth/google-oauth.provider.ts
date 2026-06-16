@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { AuthProvider } from './auth.provider';
 import { AuthUser } from '../models/auth-user.model';
@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class GoogleOAuthProvider implements AuthProvider {
-  constructor(private oauthService: OAuthService) {}
+  private oauthService = inject(OAuthService);
 
   async initialize(): Promise<void> {
     this.oauthService.configure({
